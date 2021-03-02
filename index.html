@@ -1,0 +1,329 @@
+<html lang="">
+
+<head>
+  <title>wordwordgame</title>
+  <link rel="icon" href="images/favicon.png">
+  <style>
+    html{
+      background: linear-gradient( to right, #5a6962, #b9b9b9 );
+    }
+    #board{
+      position:relative;
+       left: 50vw;
+      margin-left:-50px;
+      text-align:center;
+      width:150px;
+    }
+    #clock{
+      position:relative;
+       left: 50vw;
+       top: -60px;
+      margin-left:-100px;
+      text-align:center;
+    }
+    #jesus{
+      position:fixed;
+       bottom: -3vh;
+      left:10vw;
+        opacity:0.2 ;
+    }
+    .trapezoid {
+      position:fixed;
+      left:0px;
+      bottom: 0px;
+      background: linear-gradient( to right, #1b1c1b, #4c4c4c );
+	    height: 7vh;
+	    width:  100vw;
+   }
+.leftwall {
+  position:fixed;
+  left:0px;
+  top: 0px;
+border-bottom: 7vh solid transparent;
+border-left: 10vw solid #4d5954;
+border-right: 5vw solid transparent;
+height: 93vh;
+}
+.rightwall {
+  position:fixed;
+  right:0px;
+  top: 0px;
+border-bottom: 7vh solid transparent;
+border-right: 10vw solid #b9b9b9;
+border-left: 5vw solid transparent;
+height: 93vh;
+}
+
+.q {
+  display:flex;
+  /* position:absolute;
+  top: 25vw;
+  right:15vw; */
+  text-align: right;
+  color: rgba(10,0,150,0.6);
+
+  font-family: sans-serif;
+  font-size: 14px;
+   transform: scale(1, .7);
+   width: 35vw;
+}
+.text {
+  /* position:relative;
+  top: 10vw;
+  right:10vw;
+  text-align: right; */
+  color: rgba(0,0,0,0.6);
+  text-shadow: 1px 5px rgba(255,255,255,0.1);
+  font-size: 13px;
+  transform: scale(1, .7);
+}
+.question{
+  font-family: Times;
+  color: rgba(0,0,0,0.6);
+  text-align: left;
+  margin-left: 10px;
+  text-shadow: 5px 1px 2px rgba(120,120,120,0.1);
+
+}
+.hi{
+  box-shadow: inset 0 -13px 0 rgba(255,255,85,0.4);
+border: 1px solid white;
+color: transparent;
+}
+.ans{
+  font-style: italic;
+  text-decoration: none;
+  color: rgba(0,0,0,0.6);
+  font-family: times;
+  background-color:rgba(0,0,0,0);
+}
+.ans:hover{
+    text-decoration: underline;
+}
+.answers{
+  margin-left: 35px;
+}
+.maintext{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100px;
+  bottom: 100px;
+  right: 40vw;
+
+}
+  </style>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <img id="board" src="images/e.png">
+   
+<!-- <img id="jesus" src="images/jesus.png"> -->
+<canvas id="clock" width="50px" height="50px">
+</canvas>
+ <div class="trapezoid"></div>
+<div class="leftwall"></div>
+<div class="rightwall"></div>
+<div class="maintext">
+<h1 class="q">
+  <span class="no">7.23</span>
+  <span class="question"> A peculiar illness similar to <span class="hi">jetlag</span> that usually follows <span class="hi">airline travel</span> aboard the classier ones whose <span class="hi">beauty</span> standards for <span class="hi">stewardesses</span> are unreasonably high...</span>
+</h1>
+<div class="answers">
+  <h2 class="text">(a) <button   class="ans" onclick="lv1()">lv. 1</button>  </h1>
+    <h2 class="text">(b) <button  class="ans"  onclick="lv2()">lv. 2</button> </h1>
+      <h2 class="text">(c) <button class="ans" onclick="lv3()">lv. 3</a>  </h1>
+  </div>
+</div>
+
+<script>
+var img = new Image();
+
+var canvas = document.getElementById("clock");
+var ctx = canvas.getContext("2d");
+var radius = canvas.width / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90;
+setInterval(drawClock, 1000);
+
+img.src = "/images/e.png";
+
+function drawClock() {
+  drawFace(ctx, radius);
+   drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grd = ctx.createRadialGradient(0, 0, 50, 1, 1, 5);
+grd.addColorStop(0, "#606361");
+grd.addColorStop(1, "#b1b2b1");
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = grd;
+  ctx.fill();
+  img.onload = function(){
+    ctx.drawImage(img,0,0);
+  }
+}
+
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+
+var win1;
+var win2;
+var win3;
+var win4;
+var win5;
+var win6;
+var win7;
+var win8;
+var win9;
+var win10;
+var win11;
+var win12;
+var win13;
+var win14;
+var win15;
+var win16;
+var win17;
+var win18;
+var win19;
+var win20;
+var win30;
+var win40;
+var win50;
+var win60;
+var win70;
+var win80;
+var win90;
+var win100;
+var win110;
+var win120;
+var win130;
+var win140;
+var win150;
+
+function lv1(){
+  win1 = window.open('1.html','win1');
+    win2 = window.open('2.html');
+    win3 = window.open('3.html');
+    win4 = window.open('4.html');
+    win5 = window.open('5.html');
+    win6 = window.open('6.html');
+    // win7.close();
+    // win8.close();
+    // win9.close();
+    // win10.close();
+    // win11.close();
+    // win12.close();
+    // win13.close();
+    // win14.close();
+    // win15.close();
+    // win16.close();
+    // win17.close();
+    // win18.close();
+    // win19.close();
+    // win20.close();
+    // win30.close();
+    // win40.close();
+    // win50.close();
+    // win60.close();
+    // win70.close();
+    // win80.close();
+    // win90.close();
+    // win100.close();
+    // win110.close();
+    // win120.close();
+    // win130.close();
+    // win140.close();
+    // win150.close();
+    // win160.close();
+    // win170.close();
+    // win180.close();
+    // win190.close();
+    // win200.close();
+}
+function lv2() {
+
+      win7 = window.open('7.html');
+         win8 = window.open('8.html');
+         win9 = window.open('9.html');
+         win10 = window.open('10.html');
+         win11 = window.open('11.html');
+         win12 = window.open('12.html');
+         win13= window.open('13.html');
+         win14 = window.open('14.html');
+         win15 = window.open('15.html');
+           win1.close();
+           win2.close();
+           win3.close();
+           win4.close();
+           win5.close();
+           win6.close();
+
+   }
+   function lv3() {
+
+         win16 = window.open('16.html');
+            win17 = window.open('17.html');
+            win18 = window.open('18.html');
+            win19 = window.open('19.html');
+            win20 = window.open('20.html');
+            win30 = window.open('30.html');
+            win40= window.open('40.html');
+            win50 = window.open('50.html');
+            win60 = window.open('60.html');
+            win70 = window.open('70.html');
+            win80 = window.open('80.html');
+            win90 = window.open('90.html');
+            win100 = window.open('100.html');
+            win110 = window.open('110.html');
+            win120 = window.open('120.html');
+            win130 = window.open('130.html');
+            win140 = window.open('140.html');
+            win150 = window.open('150.html');
+            win7.close();
+                  win8.close();
+                  win9.close();
+                  win10.close();
+                  win11.close();
+                  win12.close();
+              win13.close();
+              win14.close();
+              win15.close();
+      }
+</script>
+
+</body>
+</html>
