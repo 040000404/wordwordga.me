@@ -4,40 +4,46 @@
 <link rel="icon" href="images/favicon.png">
   <title id="title50">hits</title>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <meta charset="utf-8">
+
   <style>
     html{
-      background: linear-gradient( to right, #5a6962, #b9b9b9 );
+      background: linear-gradient( to right, #cccccc, #dddddd );
     }
-
+    #board{
+      position:relative;
+       left: 50vw;
+      margin-left:-50px;
+      text-align:center;
+      width:150px;
+    }
     #clock{
       position:relative;
        left: 50vw;
-       top: -60px;
-      margin-left:-100px;
+       top: 25px;
+      margin-left:-25px;
       text-align:center;
     }
     #jesus{
       position:fixed;
-       width:100vw;
-       height:100vh;
-       margin-top:-8px;
-       filter:grayscale(30%);
-       opacity:0.2 ;
+       bottom: -3vh;
+      left:10vw;
+        opacity:0.2 ;
     }
     .trapezoid {
       position:fixed;
       left:0px;
       bottom: 0px;
-      background: linear-gradient( to right, #1b1c1b, #4c4c4c );
-      height: 7vh;
-      width:  100vw;
+      background: linear-gradient( to right, #bbbbbb, #dddddd );
+	    height: 7vh;
+	    width:  100vw;
    }
 .leftwall {
   position:fixed;
   left:0px;
   top: 0px;
 border-bottom: 7vh solid transparent;
-border-left: 10vw solid #4d5954;
+border-left: 10vw solid #cccccc;
 border-right: 5vw solid transparent;
 height: 93vh;
 }
@@ -46,7 +52,7 @@ height: 93vh;
   right:0px;
   top: 0px;
 border-bottom: 7vh solid transparent;
-border-right: 10vw solid #b9b9b9;
+border-right: 10vw solid #dddddd;
 border-left: 5vw solid transparent;
 height: 93vh;
 }
@@ -58,7 +64,7 @@ height: 93vh;
   right:15vw; */
   text-align: right;
   color: rgba(10,0,150,0.6);
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+
   font-family: sans-serif;
   font-size: 14px;
    transform: scale(1, .7);
@@ -70,15 +76,16 @@ height: 93vh;
   right:10vw;
   text-align: right; */
   color: rgba(0,0,0,0.6);
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  text-shadow: 1px 5px rgba(255,255,255,0.1);
   font-size: 13px;
   transform: scale(1, .7);
 }
 .question{
-  font-family: Times;
+  font-family: arial;
   color: rgba(0,0,0,0.6);
   text-align: left;
   margin-left: 10px;
+  text-shadow: 5px 1px 2px rgba(120,120,120,0.1);
 
 }
 .hi{
@@ -90,6 +97,8 @@ color: transparent;
   font-style: italic;
   text-decoration: none;
   color: rgba(0,0,0,0.6);
+  font-family: times;
+  background-color:rgba(0,0,0,0);
 }
 .ans:hover{
     text-decoration: underline;
@@ -114,28 +123,23 @@ color: transparent;
   margin-top: 50px;
   text-align:center;
   width:150px;
-  filter:brightness(69%);
-  filter: grayscale(30%);
-  box-shadow: -3px -1px 9px 3px rgba(0,0,0,0.5);
+    filter:grayscale(70%);
+  box-shadow: -5px 5px 10px rgba(0,0,0,0.5);
 }
   </style>
-</head>
-<body>
-   <img id="jesus" src="images/god.png">
- <img  class="image" src="images/foot.png">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 
+</head>
+
+<body>
+ </video>
 <canvas id="clock" width="50px" height="50px">
 </canvas>
-<div class="trapezoid"></div>
+ <!-- <div class="trapezoid"></div> -->
 <div class="leftwall"></div>
 <div class="rightwall"></div>
 <div class="maintext">
-<h1 class="q">
-<span class="no">7.26</span>
-<span class="question"> beauty standards for
-</h1>
-<div class="answers">
- </div>
+
 </div>
 <script>
 function lv3() {

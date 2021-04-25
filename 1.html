@@ -4,22 +4,29 @@
 <head>
   <title id="title1">small</title>
   <link rel="icon" href="images/favicon.png">
+  <meta charset="utf-8">
 
   <style>
     html{
-      background: linear-gradient( to right, #5a6962, #b9b9b9 );
+      background: linear-gradient( to right, #cccccc, #dddddd );
     }
-
+    #board{
+      position:relative;
+       left: 50vw;
+      margin-left:-50px;
+      text-align:center;
+      width:150px;
+    }
     #clock{
       position:relative;
        left: 50vw;
-       top: -60px;
-      margin-left:-100px;
+       top: 25px;
+      margin-left:-25px;
       text-align:center;
     }
     #jesus{
       position:fixed;
-       bottom: 7vh;
+       bottom: -3vh;
       left:10vw;
         opacity:0.2 ;
     }
@@ -27,7 +34,7 @@
       position:fixed;
       left:0px;
       bottom: 0px;
-      background: linear-gradient( to right, #1b1c1b, #4c4c4c );
+      background: linear-gradient( to right, #bbbbbb, #dddddd );
 	    height: 7vh;
 	    width:  100vw;
    }
@@ -36,7 +43,7 @@
   left:0px;
   top: 0px;
 border-bottom: 7vh solid transparent;
-border-left: 10vw solid #4d5954;
+border-left: 10vw solid #cccccc;
 border-right: 5vw solid transparent;
 height: 93vh;
 }
@@ -45,7 +52,7 @@ height: 93vh;
   right:0px;
   top: 0px;
 border-bottom: 7vh solid transparent;
-border-right: 10vw solid #b9b9b9;
+border-right: 10vw solid #dddddd;
 border-left: 5vw solid transparent;
 height: 93vh;
 }
@@ -57,7 +64,7 @@ height: 93vh;
   right:15vw; */
   text-align: right;
   color: rgba(10,0,150,0.6);
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+
   font-family: sans-serif;
   font-size: 14px;
    transform: scale(1, .7);
@@ -69,15 +76,16 @@ height: 93vh;
   right:10vw;
   text-align: right; */
   color: rgba(0,0,0,0.6);
-  text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+  text-shadow: 1px 5px rgba(255,255,255,0.1);
   font-size: 13px;
   transform: scale(1, .7);
 }
 .question{
-  font-family: Times;
+  font-family: arial;
   color: rgba(0,0,0,0.6);
   text-align: left;
   margin-left: 10px;
+  text-shadow: 5px 1px 2px rgba(120,120,120,0.1);
 
 }
 .hi{
@@ -89,6 +97,8 @@ color: transparent;
   font-style: italic;
   text-decoration: none;
   color: rgba(0,0,0,0.6);
+  font-family: times;
+  background-color:rgba(0,0,0,0);
 }
 .ans:hover{
     text-decoration: underline;
@@ -113,7 +123,7 @@ color: transparent;
   margin-top: 50px;
   text-align:center;
   width:150px;
-  filter:grayscale(70%);
+    filter:grayscale(70%);
   box-shadow: -5px 5px 10px rgba(0,0,0,0.5);
 }
   </style>
@@ -121,24 +131,15 @@ color: transparent;
 
 </head>
 
- <body>
- <img class="image" src="images/22.png">
-<!-- <img id="jesus" src="images/jesus.png"> -->
-<canvas id="clock" width="50px" height="50px">
+<body>
+ <canvas id="clock" width="50px" height="50px">
 </canvas>
- <div class="trapezoid"></div>
+ <!-- <div class="trapezoid"></div> -->
 <div class="leftwall"></div>
 <div class="rightwall"></div>
 <div class="maintext">
-<h1 class="q">
-  <span class="no">7.24</span>
-  <span class="question"> that <span class="hi">usually follows &nbsp;</span> airline travel aboard the classier ones  
-</h1>
-<div class="answers">
-<!-- <h2 class="text">(a) <a class="ans" a href="1.html">lv. 1</a>  </h1> -->
-<!-- <h2 class="text">(c) <a class="ans" a href="16.html">lv. 3</a>  </h1> -->
-  </div>
 </div>
+
 <script type="text/javascript">
 var win1;
 var win2;

@@ -1,11 +1,13 @@
 <html lang="">
 
 <head>
-  <title>wordwordgame</title>
+  <title>-</title>
   <link rel="icon" href="images/favicon.png">
+  <meta charset="utf-8">
+
   <style>
     html{
-      background: linear-gradient( to right, #5a6962, #b9b9b9 );
+      background: linear-gradient( to right, #cccccc, #dddddd );
     }
     #board{
       position:relative;
@@ -17,8 +19,8 @@
     #clock{
       position:relative;
        left: 50vw;
-       top: -60px;
-      margin-left:-100px;
+       top: 25px;
+      margin-left:-25px;
       text-align:center;
     }
     #jesus{
@@ -31,7 +33,7 @@
       position:fixed;
       left:0px;
       bottom: 0px;
-      background: linear-gradient( to right, #1b1c1b, #4c4c4c );
+      background: linear-gradient( to right, #bbbbbb, #dddddd );
 	    height: 7vh;
 	    width:  100vw;
    }
@@ -40,7 +42,7 @@
   left:0px;
   top: 0px;
 border-bottom: 7vh solid transparent;
-border-left: 10vw solid #4d5954;
+border-left: 10vw solid #cccccc;
 border-right: 5vw solid transparent;
 height: 93vh;
 }
@@ -49,7 +51,7 @@ height: 93vh;
   right:0px;
   top: 0px;
 border-bottom: 7vh solid transparent;
-border-right: 10vw solid #b9b9b9;
+border-right: 10vw solid #dddddd;
 border-left: 5vw solid transparent;
 height: 93vh;
 }
@@ -78,7 +80,7 @@ height: 93vh;
   transform: scale(1, .7);
 }
 .question{
-  font-family: Times;
+  font-family: arial;
   color: rgba(0,0,0,0.6);
   text-align: left;
   margin-left: 10px;
@@ -119,18 +121,16 @@ color: transparent;
 </head>
 
 <body>
-    <img id="board" src="images/e.png">
-   
 <!-- <img id="jesus" src="images/jesus.png"> -->
 <canvas id="clock" width="50px" height="50px">
 </canvas>
- <div class="trapezoid"></div>
+ <!-- <div class="trapezoid"></div> -->
 <div class="leftwall"></div>
 <div class="rightwall"></div>
 <div class="maintext">
 <h1 class="q">
   <span class="no">7.23</span>
-  <span class="question"> A peculiar illness similar to <span class="hi">jetlag</span> that usually follows <span class="hi">airline travel</span> aboard the classier ones whose <span class="hi">beauty</span> standards for <span class="hi">stewardesses</span> are unreasonably high...</span>
+  <!-- <span class="question">농담에 <span class="hi">상스런</span>  발목을 묶으쇼</span> -->
 </h1>
 <div class="answers">
   <h2 class="text">(a) <button   class="ans" onclick="lv1()">lv. 1</button>  </h1>
@@ -140,66 +140,6 @@ color: transparent;
 </div>
 
 <script>
-var img = new Image();
-
-var canvas = document.getElementById("clock");
-var ctx = canvas.getContext("2d");
-var radius = canvas.width / 2;
-ctx.translate(radius, radius);
-radius = radius * 0.90;
-setInterval(drawClock, 1000);
-
-img.src = "/images/e.png";
-
-function drawClock() {
-  drawFace(ctx, radius);
-   drawTime(ctx, radius);
-}
-
-function drawFace(ctx, radius) {
-  var grd = ctx.createRadialGradient(0, 0, 50, 1, 1, 5);
-grd.addColorStop(0, "#606361");
-grd.addColorStop(1, "#b1b2b1");
-  ctx.beginPath();
-  ctx.arc(0, 0, radius, 0, 2*Math.PI);
-  ctx.fillStyle = grd;
-  ctx.fill();
-  img.onload = function(){
-    ctx.drawImage(img,0,0);
-  }
-}
-
-
-function drawTime(ctx, radius){
-    var now = new Date();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    //hour
-    hour=hour%12;
-    hour=(hour*Math.PI/6)+
-    (minute*Math.PI/(6*60))+
-    (second*Math.PI/(360*60));
-    drawHand(ctx, hour, radius*0.5, radius*0.07);
-    //minute
-    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
-    drawHand(ctx, minute, radius*0.8, radius*0.07);
-    // second
-    second=(second*Math.PI/30);
-    drawHand(ctx, second, radius*0.9, radius*0.02);
-}
-
-function drawHand(ctx, pos, length, width) {
-    ctx.beginPath();
-    ctx.lineWidth = width;
-    ctx.lineCap = "round";
-    ctx.moveTo(0,0);
-    ctx.rotate(pos);
-    ctx.lineTo(0, -length);
-    ctx.stroke();
-    ctx.rotate(-pos);
-}
-
 var win1;
 var win2;
 var win3;
