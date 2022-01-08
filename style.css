@@ -1,0 +1,341 @@
+*,
+*::before,
+*::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-size: 100%;
+}
+
+html, body{
+  height:  100%;
+  background-color: #454A59;
+  filter: saturate(66%);
+  overflow: hidden;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;  
+}
+
+#room{
+  width: 480px;
+  height: 480px;
+  border: 1px solid yellow;
+  position: absolute;
+  left: 50vw;
+  margin-left: -240px;
+  margin-top: 48px;
+  background: linear-gradient(45deg, #312278, #56574a);
+}
+.ceiling {
+  position:fixed; 
+  top: 49px;
+  left:calc(50vw - 240px + 1px);  
+  border-top: 24px solid #666;
+  border-left: 48px solid transparent;
+  border-right: 48px solid transparent;
+  height: 64px;
+  width:  478px;
+}
+.floor {
+  position:fixed;  
+  top: calc(480px + 49px - 50px);
+  left:calc(50vw - 240px + 1px);   
+  background:  linear-gradient(45deg,#1C1D1C,#4C4C4C);
+  height: 47px;
+  width:  478px;
+ }
+
+.leftwall {
+  position:fixed;
+  left:calc(50vw - 240px + 1px);
+  top: 49px;
+  border-bottom: 48px solid transparent;
+  border-left: 47px solid #241C51;
+  border-right: 240px solid transparent;
+  height: 478px; 
+}
+
+.rightwall {
+  position:fixed;
+  right:calc(50vw - 240px + 1px);
+  top: 49px;
+  border-bottom: 48px solid transparent;
+  border-right: 48px solid #56574a;
+  border-left: 240px solid transparent;
+  height: 478px;
+}
+
+#clockFrame{
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 160px;
+  position:relative;
+  left: 240px;
+  margin-left:-75px;
+  top: 25px;
+  background-image: url('images/clockFrame.png');
+}
+#canvas{
+  width:  56px;
+  height:  56px;
+  position: absolute;
+  top: 48px;
+  left: 53px;
+  text-align:center; 
+  opacity: .5;
+} 
+
+.maintext{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 120px;
+  bottom: 64px;
+  left: calc(48px + 120px);
+}
+
+.problem { 
+  display: flex;
+  /* position:absolute;
+  top: 25vw;
+  right:15vw; */
+  text-align: left;
+  color: rgba(10,0,150,0.6);
+  font-family: sans-serif;
+  font-size: 14px;
+  transform: scale(1, .7);
+  width: 480px;
+}
+li{
+  color: rgba(0,0,0,0.6);
+  text-shadow: 1px 5px rgba(255,255,255,0.1);
+  font-size: 13px;
+  transform: scale(1, .7);
+}
+.questionNo{
+padding: 1px 3px 3px 3px;
+border:  1px solid #222;
+} 
+.question{
+  font-family: arial;
+  color: rgba(0,0,0,0.6);
+  text-align: left;
+  margin-left: 10px;
+  text-shadow: 5px 1px 2px rgba(242,222,222,0.2);
+}
+
+.ans{
+  font-style: italic;
+  text-decoration: none;
+  color: rgba(0,0,0,0.6);
+  font-family: times;
+  padding: 3px;
+  background-color: transparent;
+  margin-left: 16px;
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 2s ease;
+}
+.ans:hover{
+  text-decoration: underline;
+  color: beige;
+  cursor: pointer;
+  background: #222;
+}
+ol.choices{
+  margin-left: 40px;
+  list-style-type: lower-alpha;
+}
+
+#answerKey{
+  position: absolute;
+  left: 24px; 
+  bottom: 24px;
+}
+#answerKey a{
+        width: 96px;
+        height: 135px;
+        background: url("images/plant.jpeg") no-repeat;
+        display: inline-block;
+        background-size: cover;
+    }
+#answerKey a:hover {
+        width: 135px;
+        height: 96px;
+        border: 1px solid red;
+        background: url("images/bean.jpg") no-repeat;
+        background-size: cover;
+    }
+
+#quote{
+  color: beige;
+  font-size: 12px;
+  font-family: gulim; 
+  word-break: keep-all;
+}
+ 
+#help{
+  position: relative;
+  top: calc(480px + 48px);
+  left: calc(50vw - 25px / 2 - 240px);
+  margin: 10px;
+}
+#helpButton{
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin-top: 2px;
+  padding: 5px;
+  font-size: 10px;
+  color: white;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  background:radial-gradient(red, #454A59) ;
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 2s ease;
+
+}
+
+#helpButton:hover{
+  cursor: pointer;
+  color: red;
+  background:radial-gradient(yellow, #454A59) ; 
+} 
+#popup{  
+  background-color: white;
+  border: 1px solid #222;
+  padding: 5px;
+  font-size: 12px;
+  font-family: gulim;
+}
+
+.showKeys{
+  padding: 5px; 
+  font-family: gulim;
+  display: none;
+  margin: 16px;
+}
+
+#showKey1{   
+  display: none; 
+}
+#showKey1:target{
+  display: inline-block;
+}
+#showKey2{   
+  display: none; 
+}
+#showKey2:target{
+  display: inline-block;
+}
+#showKey3{   
+  display: none; 
+}
+#showKey3:target{
+  display: inline-block;
+}
+.maroon{
+  color: maroon;
+}
+.teal{
+  color: teal;
+}
+.lightpink{
+  color: lightpink;
+}
+.darkred{
+  color: darkred;
+}
+.lightblue{
+  color: lightblue;
+}
+.ivory{
+  color: ivory;
+}
+.seashell{
+  color: seashell;
+}
+.lightgrey{
+  color: lightgrey;
+}
+.salmon{
+  color: salmon;
+}
+.red{
+  color: red;
+}
+.purple{
+  color: purple;
+}
+.green{
+  color: green;
+}
+.coral{
+  color: coral;
+}
+.grey{
+  color: grey;
+}
+.deeppink{
+  color: deeppink;
+}
+.yellow{
+  color: yellow;
+}
+.orange{
+  color: orange;
+}
+.blue{
+  color: blue;
+}
+.pink{
+  color: pink;
+}
+.sienna{
+  color: sienna;
+}
+.violet{
+  color: violet;
+}
+.cyan{
+  color: cyan;
+}
+.orange{
+  color: orange;
+}
+.lime{
+  color: lime;
+}
+p{
+  font-family: gulim;
+}
+section{
+  width: 50vw;
+  position: absolute;
+  left: calc(50% - 25vw);
+  text-align: center;
+  display: flex;
+  flex-direction: column; 
+  justify-items: stretch;
+  justify-content: center;
+  font-size: 16px;
+  background: radial-gradient(black,#454A59);
+  height: 100vh;
+}
+footer{
+  position: fixed;
+  text-align: right;
+  color: #777;
+  margin: 8px;
+  bottom: 0;
+  right: 0;
+}
+
+
